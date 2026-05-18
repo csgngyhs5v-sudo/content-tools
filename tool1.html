@@ -21,348 +21,63 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', sans-serif; min-height: 100vh; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Noto Sans SC', sans-serif;
-  min-height: 100vh;
-}
-
-/* ── SETUP SCREEN ── */
-#setupScreen {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background:
-    radial-gradient(ellipse 70% 50% at 20% 30%, rgba(232,81,42,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 70% at 80% 70%, rgba(79,156,249,0.07) 0%, transparent 60%),
-    var(--bg);
-}
-
-.setup-card {
-  width: 100%;
-  max-width: 480px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 48px 40px;
-  animation: fadeUp 0.6s ease;
-}
-
-.setup-logo {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 28px;
-  font-weight: 900;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #fff 40%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.setup-sub {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 36px;
-  line-height: 1.8;
-}
-
-.setup-label {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--accent);
-  margin-bottom: 10px;
-  display: block;
-}
-
-.setup-input {
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 18px;
-  color: var(--text);
-  font-size: 14px;
-  font-family: 'DM Mono', monospace;
-  outline: none;
-  margin-bottom: 12px;
-  transition: border-color 0.2s;
-}
+#setupScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: radial-gradient(ellipse 70% 50% at 20% 30%, rgba(232,81,42,0.1) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 80% 70%, rgba(79,156,249,0.07) 0%, transparent 60%), var(--bg); }
+.setup-card { width: 100%; max-width: 480px; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; animation: fadeUp 0.6s ease; }
+.setup-logo { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 900; margin-bottom: 8px; background: linear-gradient(135deg, #fff 40%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.setup-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; line-height: 1.8; }
+.setup-label { font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 10px; display: block; }
+.setup-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; color: var(--text); font-size: 14px; font-family: 'DM Mono', monospace; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
 .setup-input:focus { border-color: var(--accent); }
 .setup-input::placeholder { color: rgba(255,255,255,0.2); font-size: 12px; }
-
-.setup-tip {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 28px;
-  line-height: 1.8;
-  padding: 12px 14px;
-  background: rgba(244,162,97,0.06);
-  border-left: 2px solid var(--accent2);
-  border-radius: 0 8px 8px 0;
-}
+.setup-tip { font-size: 12px; color: var(--muted); margin-bottom: 28px; line-height: 1.8; padding: 12px 14px; background: rgba(244,162,97,0.06); border-left: 2px solid var(--accent2); border-radius: 0 8px 8px 0; }
 .setup-tip a { color: var(--accent2); text-decoration: none; }
-
-.setup-btn {
-  width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, var(--accent), #c03a1a);
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 15px;
-  font-weight: 700;
-  font-family: 'Noto Sans SC', sans-serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
+.setup-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent), #c03a1a); border: none; border-radius: 12px; color: white; font-size: 15px; font-weight: 700; font-family: 'Noto Sans SC', sans-serif; letter-spacing: 2px; cursor: pointer; transition: opacity 0.2s; }
 .setup-btn:hover { opacity: 0.9; }
+.setup-tools { display: flex; gap: 8px; margin-top: 28px; flex-wrap: wrap; }
+.tool-badge { padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border); font-size: 11px; color: var(--muted); }
 
-.setup-tools {
-  display: flex;
-  gap: 8px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-.tool-badge {
-  padding: 5px 12px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--muted);
-}
-
-/* ── MAIN APP ── */
 #mainApp { display: none; min-height: 100vh; }
-
-/* Sidebar */
-.app-layout {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  min-height: 100vh;
-}
-@media(max-width: 700px) {
-  .app-layout { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .mobile-nav { display: flex !important; }
-}
-
-.sidebar {
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  padding: 28px 0;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-logo {
-  padding: 0 20px 24px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 16px;
-}
-.sidebar-name {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.sidebar-title {
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-
-.nav-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--muted);
-  padding: 0 20px;
-  margin-bottom: 8px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 20px;
-  font-size: 13px;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.2s;
-  border-left: 2px solid transparent;
-}
+.app-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+@media(max-width: 700px) { .app-layout { grid-template-columns: 1fr; } .sidebar { display: none; } .mobile-nav { display: flex !important; } }
+.sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 28px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
+.sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.sidebar-name { font-family: 'Noto Serif SC', serif; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.sidebar-title { font-size: 11px; color: var(--accent); letter-spacing: 1px; }
+.nav-label { font-size: 10px; letter-spacing: 3px; color: var(--muted); padding: 0 20px; margin-bottom: 8px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 20px; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.2s; border-left: 2px solid transparent; }
 .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
-.nav-item.active {
-  color: var(--accent);
-  border-left-color: var(--accent);
-  background: rgba(232,81,42,0.06);
-}
+.nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(232,81,42,0.06); }
 .nav-icon { font-size: 16px; }
-
-.sidebar-footer {
-  margin-top: auto;
-  padding: 16px 20px;
-  border-top: 1px solid var(--border);
-}
-.api-indicator {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--green);
-}
+.sidebar-footer { margin-top: auto; padding: 16px 20px; border-top: 1px solid var(--border); }
+.api-indicator { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--green); }
 .api-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.change-key-btn {
-  margin-top: 8px;
-  font-size: 11px;
-  color: var(--muted);
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: 'Noto Sans SC', sans-serif;
-  padding: 0;
-  text-decoration: underline;
-}
-
-/* Mobile nav */
-.mobile-nav {
-  display: none;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 16px;
-  gap: 8px;
-  overflow-x: auto;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.mobile-nav-btn {
-  padding: 8px 14px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  font-size: 12px;
-  font-family: 'Noto Sans SC', sans-serif;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-.mobile-nav-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
-
-/* Content area */
-.content-area {
-  overflow-y: auto;
-  padding: 36px 32px;
-}
+.change-key-btn { margin-top: 8px; font-size: 11px; color: var(--muted); cursor: pointer; background: none; border: none; font-family: 'Noto Sans SC', sans-serif; padding: 0; text-decoration: underline; }
+.mobile-nav { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; gap: 8px; overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+.mobile-nav-btn { padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 12px; font-family: 'Noto Sans SC', sans-serif; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.mobile-nav-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+.content-area { overflow-y: auto; padding: 36px 32px; }
 @media(max-width: 700px) { .content-area { padding: 20px 16px; } }
-
 .tool-page { display: none; animation: fadeIn 0.3s ease; }
 .tool-page.active { display: block; }
-
-/* Page header */
-.page-header {
-  margin-bottom: 28px;
-}
-.page-tag {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.page-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
+.page-header { margin-bottom: 28px; }
+.page-tag { font-size: 10px; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+.page-title { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 700; margin-bottom: 6px; }
 .page-desc { font-size: 13px; color: var(--muted); line-height: 1.8; }
-
-/* ── TOOL 1: Topic Generator ── */
-.input-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 20px;
-}
-
-.field-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--accent);
-  margin-bottom: 10px;
-  display: block;
-}
-
-.text-input {
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: var(--text);
-  font-size: 14px;
-  font-family: 'Noto Sans SC', sans-serif;
-  outline: none;
-  margin-bottom: 16px;
-  transition: border-color 0.2s;
-}
+.input-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+.field-label { font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; display: block; }
+.text-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-size: 14px; font-family: 'Noto Sans SC', sans-serif; outline: none; margin-bottom: 16px; transition: border-color 0.2s; }
 .text-input:focus { border-color: var(--accent); }
 .text-input::placeholder { color: rgba(255,255,255,0.25); }
-
 .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-.style-tag {
-  padding: 6px 14px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 12px;
-  cursor: pointer;
-  background: transparent;
-  font-family: 'Noto Sans SC', sans-serif;
-  transition: all 0.2s;
-}
+.style-tag { padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border); color: var(--muted); font-size: 12px; cursor: pointer; background: transparent; font-family: 'Noto Sans SC', sans-serif; transition: all 0.2s; }
 .style-tag.active { border-color: var(--accent); color: var(--accent); background: rgba(232,81,42,0.1); }
-
-.run-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--accent), #c03a1a);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Noto Sans SC', sans-serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
+.run-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent), #c03a1a); border: none; border-radius: 10px; color: white; font-size: 14px; font-weight: 700; font-family: 'Noto Sans SC', sans-serif; letter-spacing: 2px; cursor: pointer; transition: opacity 0.2s; }
 .run-btn:hover { opacity: 0.9; }
 .run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* Loading */
-.loading-box {
-  display: none;
-  text-align: center;
-  padding: 40px;
-}
+.loading-box { display: none; text-align: center; padding: 40px; }
 .loading-box.show { display: block; }
 .dots { display: inline-flex; gap: 6px; margin-bottom: 12px; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: bounce 1.2s infinite; }
@@ -370,98 +85,38 @@ body {
 .dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
 .loading-box p { font-size: 12px; color: var(--muted); letter-spacing: 2px; }
-
-/* Topic cards */
 .topics-wrap { display: none; }
 .topics-wrap.show { display: block; animation: fadeIn 0.4s ease; }
-
-.topic-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-left: 2px solid transparent;
-  animation: slideIn 0.3s ease both;
-}
+.topic-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; border-left: 2px solid transparent; animation: slideIn 0.3s ease both; }
 .topic-card:hover { border-left-color: var(--accent); background: rgba(232,81,42,0.04); }
 .topic-num { font-size: 10px; letter-spacing: 2px; color: var(--accent); margin-bottom: 6px; opacity: 0.7; }
 .topic-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; line-height: 1.5; }
 .topic-hook { font-size: 12px; color: var(--muted); line-height: 1.7; }
 .topic-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
 .t-tag { font-size: 11px; padding: 2px 8px; border-radius: 100px; background: rgba(232,81,42,0.1); color: var(--accent); border: 1px solid rgba(232,81,42,0.2); }
-
-.copy-all-btn {
-  width: 100%;
-  padding: 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  font-family: 'Noto Sans SC', sans-serif;
-  margin-top: 4px;
-  transition: all 0.2s;
-}
+.copy-all-btn { width: 100%; padding: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; letter-spacing: 2px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; margin-top: 4px; transition: all 0.2s; }
 .copy-all-btn:hover { color: var(--text); background: rgba(255,255,255,0.07); }
-
-/* ── TOOL 2: Weekly Review ── */
 .tabs-bar { display: flex; gap: 4px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 4px; margin-bottom: 20px; }
 .tab-btn { flex: 1; padding: 9px; border-radius: 7px; border: none; background: transparent; color: var(--muted); font-family: 'Noto Sans SC', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
 .tab-btn.active { background: var(--accent); color: white; font-weight: 500; }
-
 .t2-section { display: none; }
 .t2-section.active { display: block; animation: fadeIn 0.3s ease; }
-
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
 @media(max-width: 500px) { .form-grid { grid-template-columns: 1fr; } }
-
-.field-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  transition: border-color 0.2s;
-}
+.field-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; transition: border-color 0.2s; }
 .field-box:focus-within { border-color: var(--accent); }
 .field-box label { display: block; font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-bottom: 6px; }
-.field-box input, .field-box select, .field-box textarea {
-  width: 100%; background: transparent; border: none; outline: none;
-  color: var(--text); font-family: 'Noto Sans SC', sans-serif; font-size: 13px;
-}
+.field-box input, .field-box select, .field-box textarea { width: 100%; background: transparent; border: none; outline: none; color: var(--text); font-family: 'Noto Sans SC', sans-serif; font-size: 13px; }
 .field-box textarea { resize: none; height: 50px; line-height: 1.6; }
 .field-box select option { background: var(--surface); }
 .field-full { grid-column: 1 / -1; }
-
-.entry-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 28px;
-  gap: 8px;
-  align-items: center;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  animation: slideIn 0.3s ease;
-}
+.entry-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 28px; gap: 8px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; animation: slideIn 0.3s ease; }
 @media(max-width: 500px) { .entry-row { grid-template-columns: 1fr 1fr; } }
 .entry-row input { background: transparent; border: none; border-bottom: 1px solid var(--border); outline: none; color: var(--text); font-family: 'Noto Sans SC', sans-serif; font-size: 12px; padding-bottom: 3px; width: 100%; }
 .entry-row input::placeholder { color: var(--muted); font-size: 11px; }
 .del-btn { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.2); color: #f85149; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; }
-
-.add-entry-btn {
-  width: 100%; padding: 11px; background: transparent; border: 1px dashed var(--border);
-  border-radius: 10px; color: var(--muted); font-size: 12px; cursor: pointer;
-  font-family: 'Noto Sans SC', sans-serif; margin-bottom: 16px; transition: all 0.2s;
-}
+.add-entry-btn { width: 100%; padding: 11px; background: transparent; border: 1px dashed var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; margin-bottom: 16px; transition: all 0.2s; }
 .add-entry-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-/* Stats */
 .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 16px; }
 @media(max-width: 500px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
 .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; animation: fadeIn 0.4s ease both; }
@@ -469,7 +124,6 @@ body {
 .stat-val { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; }
 .stat-sub { font-size: 11px; margin-top: 3px; }
 .c-green { color: var(--green); } .c-red { color: #f85149; } .c-muted { color: var(--muted); }
-
 .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
 .chart-title { font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 16px; }
 .bar-row { display: grid; grid-template-columns: 100px 1fr 60px; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 12px; }
@@ -477,13 +131,10 @@ body {
 .bar-track { background: rgba(255,255,255,0.05); border-radius: 3px; height: 6px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(.4,0,.2,1); }
 .bar-val { color: var(--muted); text-align: right; font-family: 'DM Mono', monospace; font-size: 11px; }
-
 .insights-card { background: rgba(79,156,249,0.05); border: 1px solid rgba(79,156,249,0.15); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
 .insights-title { font-size: 11px; letter-spacing: 2px; color: var(--blue); margin-bottom: 14px; }
 .insight-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: rgba(240,237,232,0.8); line-height: 1.8; animation: fadeIn 0.5s ease both; }
 .insight-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 9px; }
-
-/* ── TOOL 3: Brand Analysis ── */
 .brand-form { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
 .check-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); cursor: pointer; }
@@ -491,28 +142,14 @@ body {
 .check-item.checked .check-box { background: var(--accent); border-color: var(--accent); }
 .check-item.checked .check-box::after { content: '✓'; font-size: 9px; color: white; font-weight: bold; }
 .check-item.checked { color: var(--text); }
-
 .brand-result { display: none; }
 .brand-result.show { display: block; animation: fadeIn 0.4s ease; }
-
-.brand-banner {
-  background: linear-gradient(135deg, #1e1008, #0e1520);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+.brand-banner { background: linear-gradient(135deg, #1e1008, #0e1520); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
 .brand-name-big { font-family: 'Noto Serif SC', serif; font-size: 24px; font-weight: 700; margin-bottom: 6px; }
 .brand-cat-tag { display: inline-block; padding: 3px 10px; background: rgba(244,162,97,0.15); border: 1px solid rgba(244,162,97,0.3); border-radius: 100px; font-size: 11px; color: var(--accent2); }
 .score-box { text-align: center; }
 .score-num { font-family: 'DM Mono', monospace; font-size: 40px; color: var(--accent2); line-height: 1; }
 .score-lbl { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
-
 .modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
 @media(max-width: 600px) { .modules-grid { grid-template-columns: 1fr; } }
 .mod-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; animation: fadeIn 0.4s ease both; }
@@ -526,50 +163,35 @@ body {
 .kpi-row:last-child { border: none; }
 .kpi-k { color: var(--muted); }
 .kpi-v { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); }
-
 .action-card { background: rgba(232,81,42,0.04); border: 1px solid rgba(232,81,42,0.12); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
 .action-title { font-size: 14px; font-weight: 500; margin-bottom: 14px; }
 .action-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--muted); line-height: 1.8; animation: slideIn 0.4s ease both; }
 .action-num { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: white; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-
-.export-btn {
-  width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border);
-  border-radius: 10px; color: var(--muted); font-size: 12px; letter-spacing: 2px;
-  cursor: pointer; font-family: 'Noto Sans SC', sans-serif; transition: all 0.2s;
-}
+.export-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; letter-spacing: 2px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; transition: all 0.2s; }
 .export-btn:hover { background: rgba(255,255,255,0.04); color: var(--text); }
-
-/* Error */
-.error-msg { display: none; background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.2); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #f85149; margin-top: 12px; }
+.error-msg { display: none; background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.2); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #f85149; margin-top: 12px; line-height: 1.8; }
 .error-msg.show { display: block; }
-
-/* Animations */
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 @keyframes slideIn { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
-
-/* Powered */
 .powered { text-align: center; padding: 32px; font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.15); }
 .powered span { color: var(--accent); }
 </style>
 </head>
 <body>
-
-<!-- ══ SETUP SCREEN ══ -->
 <div id="setupScreen">
   <div class="setup-card">
     <div class="setup-logo">AI 内容营销<br>工具集</div>
     <div class="setup-sub">秦恺翊 · 作品集展示<br>输入你的 DeepSeek API Key 即可使用全部功能</div>
-
-    <span class="setup-label">✦ 输入 API KEY</span>
+    <span class="setup-label">✦ API KEY</span>
     <input class="setup-input" id="apiKeyInput" type="password" placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx">
-
+    <span class="setup-label">✦ BASE URL（接口地址）</span>
+    <input class="setup-input" id="baseUrlInput" type="text" value="https://api.deepseek.com/v1" placeholder="https://api.deepseek.com/v1">
     <div class="setup-tip">
-      没有Key？去 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 免费注册获取，注册即送免费额度。
+      🇨🇳 国内用户如连接失败，可尝试把 Base URL 改为你的代理地址，或使用 <a href="https://siliconflow.cn" target="_blank">硅基流动</a> 的兼容接口。<br>
+      没有Key？去 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 免费注册。
     </div>
-
     <button class="setup-btn" onclick="startApp()">🚀 进入工具集</button>
-
     <div class="setup-tools">
       <span class="tool-badge">🌸 选题生成器</span>
       <span class="tool-badge">📊 数据周报</span>
@@ -578,59 +200,40 @@ body {
   </div>
 </div>
 
-<!-- ══ MAIN APP ══ -->
 <div id="mainApp">
   <div class="app-layout">
-
-    <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-logo">
         <div class="sidebar-name">秦恺翊</div>
         <div class="sidebar-title">AI 内容营销工具集</div>
       </div>
-
       <div class="nav-label">工具</div>
-      <div class="nav-item active" onclick="switchTool('t1')">
-        <span class="nav-icon">🌸</span> 选题生成器
-      </div>
-      <div class="nav-item" onclick="switchTool('t2')">
-        <span class="nav-icon">📊</span> 数据周报复盘
-      </div>
-      <div class="nav-item" onclick="switchTool('t3')">
-        <span class="nav-icon">🔍</span> 竞品分析
-      </div>
-
+      <div class="nav-item active" onclick="switchTool('t1')"><span class="nav-icon">🌸</span> 选题生成器</div>
+      <div class="nav-item" onclick="switchTool('t2')"><span class="nav-icon">📊</span> 数据周报复盘</div>
+      <div class="nav-item" onclick="switchTool('t3')"><span class="nav-icon">🔍</span> 竞品分析</div>
       <div class="sidebar-footer">
-        <div class="api-indicator">
-          <div class="api-dot"></div>
-          DeepSeek API 已连接
-        </div>
-        <button class="change-key-btn" onclick="changeKey()">更换 API Key</button>
+        <div class="api-indicator"><div class="api-dot"></div>API 已连接</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;word-break:break-all;" id="baseUrlDisplay"></div>
+        <button class="change-key-btn" onclick="changeKey()">更换 Key / Base URL</button>
       </div>
     </div>
 
-    <!-- Mobile nav -->
     <div class="mobile-nav">
       <button class="mobile-nav-btn active" onclick="switchTool('t1')">🌸 选题生成器</button>
       <button class="mobile-nav-btn" onclick="switchTool('t2')">📊 数据周报</button>
       <button class="mobile-nav-btn" onclick="switchTool('t3')">🔍 竞品分析</button>
     </div>
 
-    <!-- Content -->
     <div class="content-area">
-
-      <!-- ── TOOL 1 ── -->
       <div class="tool-page active" id="t1">
         <div class="page-header">
           <div class="page-tag">TOOL 01</div>
           <div class="page-title">小红书爆款选题生成器</div>
           <div class="page-desc">输入品类，AI 生成 10 个高点击选题 + 文案钩子 + 话题标签</div>
         </div>
-
         <div class="input-card">
           <span class="field-label">✦ 内容品类</span>
           <input class="text-input" id="t1Category" placeholder="例：护肤、减脂、职场穿搭、咖啡、旅行...">
-
           <span class="field-label">✦ 内容风格（可多选）</span>
           <div class="tag-row" id="t1StyleTags">
             <button class="style-tag active" data-val="干货教程">干货教程</button>
@@ -640,93 +243,57 @@ body {
             <button class="style-tag" data-val="热点蹭流量">热点蹭流量</button>
             <button class="style-tag" data-val="素人故事">素人故事</button>
           </div>
-
           <button class="run-btn" id="t1Btn" onclick="genTopics()">✨ 立即生成爆款选题</button>
           <div class="error-msg" id="t1Error"></div>
         </div>
-
-        <div class="loading-box" id="t1Loading">
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          <p>AI 正在生成选题...</p>
-        </div>
-
+        <div class="loading-box" id="t1Loading"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><p>AI 正在生成选题...</p></div>
         <div class="topics-wrap" id="t1Results">
           <div id="t1Grid"></div>
           <button class="copy-all-btn" onclick="copyAllTopics()">📋 一键复制全部选题</button>
         </div>
       </div>
 
-      <!-- ── TOOL 2 ── -->
       <div class="tool-page" id="t2">
         <div class="page-header">
           <div class="page-tag">TOOL 02</div>
           <div class="page-title">内容数据周报复盘</div>
           <div class="page-desc">录入本周数据，AI 自动生成可视化报告与运营洞察</div>
         </div>
-
         <div class="tabs-bar">
           <button class="tab-btn active" onclick="switchT2Tab('input')">📝 录入数据</button>
           <button class="tab-btn" onclick="switchT2Tab('report')">📊 查看报告</button>
         </div>
-
         <div class="t2-section active" id="t2Input">
           <div class="form-grid">
-            <div class="field-box">
-              <label>平台</label>
-              <select id="t2Platform"><option>小红书</option><option>抖音</option><option>B站</option><option>微博</option></select>
-            </div>
-            <div class="field-box">
-              <label>账号名称</label>
-              <input type="text" id="t2Account" placeholder="你的账号名">
-            </div>
-            <div class="field-box">
-              <label>本周粉丝数</label>
-              <input type="number" id="t2FanNow" placeholder="如：12800">
-            </div>
-            <div class="field-box">
-              <label>上周粉丝数</label>
-              <input type="number" id="t2FanLast" placeholder="如：11200">
-            </div>
-            <div class="field-box field-full">
-              <label>本周目标 / 备注</label>
-              <textarea id="t2Goal" placeholder="例：本周主推护肤系列，目标涨粉500..."></textarea>
-            </div>
+            <div class="field-box"><label>平台</label><select id="t2Platform"><option>小红书</option><option>抖音</option><option>B站</option><option>微博</option></select></div>
+            <div class="field-box"><label>账号名称</label><input type="text" id="t2Account" placeholder="你的账号名"></div>
+            <div class="field-box"><label>本周粉丝数</label><input type="number" id="t2FanNow" placeholder="如：12800"></div>
+            <div class="field-box"><label>上周粉丝数</label><input type="number" id="t2FanLast" placeholder="如：11200"></div>
+            <div class="field-box field-full"><label>本周目标 / 备注</label><textarea id="t2Goal" placeholder="例：本周主推护肤系列，目标涨粉500..."></textarea></div>
           </div>
-
           <div style="font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:12px;">✦ 内容明细</div>
           <div id="t2Entries"></div>
           <button class="add-entry-btn" onclick="addT2Entry()">＋ 添加一条内容</button>
           <button class="run-btn" id="t2Btn" onclick="analyzeWeekly()">🤖 生成智能周报</button>
           <div class="error-msg" id="t2Error"></div>
         </div>
-
         <div class="t2-section" id="t2Report">
-          <div class="loading-box" id="t2Loading">
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            <p>AI 正在分析数据...</p>
-          </div>
+          <div class="loading-box" id="t2Loading"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><p>AI 正在分析数据...</p></div>
           <div id="t2ReportContent"></div>
         </div>
       </div>
 
-      <!-- ── TOOL 3 ── -->
       <div class="tool-page" id="t3">
         <div class="page-header">
           <div class="page-tag">TOOL 03</div>
           <div class="page-title">品牌投放竞品分析</div>
           <div class="page-desc">输入品牌名，AI 输出内容策略、KOL偏好、用户画像与竞争机会</div>
         </div>
-
         <div class="brand-form">
           <span class="field-label">✦ 目标品牌</span>
           <input class="text-input" id="t3Brand" placeholder="例：完美日记、泡泡玛特、元气森林...">
-
           <span class="field-label">✦ 品类</span>
-          <select class="text-input" id="t3Category" style="margin-bottom:16px">
-            <option>美妆护肤</option><option>食品饮料</option><option>服装配饰</option>
-            <option>数码科技</option><option>家居生活</option><option>运动户外</option><option>其他</option>
-          </select>
-
+          <select class="text-input" id="t3Category" style="margin-bottom:16px"><option>美妆护肤</option><option>食品饮料</option><option>服装配饰</option><option>数码科技</option><option>家居生活</option><option>运动户外</option><option>其他</option></select>
           <span class="field-label">✦ 主要平台</span>
           <div class="check-group" id="t3Platforms">
             <div class="check-item checked" onclick="toggleCheck(this)"><div class="check-box"></div>小红书</div>
@@ -734,16 +301,10 @@ body {
             <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div>B站</div>
             <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div>微博</div>
           </div>
-
           <button class="run-btn" id="t3Btn" onclick="analyzeBrand()">🔍 开始竞品分析</button>
           <div class="error-msg" id="t3Error"></div>
         </div>
-
-        <div class="loading-box" id="t3Loading">
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          <p>AI 正在分析品牌数据...</p>
-        </div>
-
+        <div class="loading-box" id="t3Loading"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><p>AI 正在分析品牌数据...</p></div>
         <div class="brand-result" id="t3Result"></div>
       </div>
 
@@ -754,120 +315,126 @@ body {
 
 <script>
 let API_KEY = '';
-let t1Topics = [];
+let BASE_URL = 'https://api.deepseek.com/v1';
 let t2EntryCount = 0;
+let t1LastTopics = [];
 let t3Data = null;
 
-// ── SETUP ──
 function startApp() {
   const key = document.getElementById('apiKeyInput').value.trim();
+  const url = document.getElementById('baseUrlInput').value.trim();
   if (!key.startsWith('sk-')) { alert('请输入正确的 API Key（以 sk- 开头）'); return; }
+  if (!url.startsWith('http')) { alert('Base URL 格式不正确'); return; }
   API_KEY = key;
+  BASE_URL = url.replace(/\/$/, '');
   document.getElementById('setupScreen').style.display = 'none';
   document.getElementById('mainApp').style.display = 'block';
-  // Init tool 2 entries
+  document.getElementById('baseUrlDisplay').textContent = BASE_URL;
   addT2Entry(); addT2Entry(); addT2Entry();
 }
 
 function changeKey() {
-  API_KEY = '';
+  API_KEY = ''; BASE_URL = 'https://api.deepseek.com/v1';
   document.getElementById('mainApp').style.display = 'none';
   document.getElementById('setupScreen').style.display = 'flex';
   document.getElementById('apiKeyInput').value = '';
+  document.getElementById('baseUrlInput').value = 'https://api.deepseek.com/v1';
 }
 
-// DeepSeek API call
 async function callAI(prompt) {
-  const resp = await fetch('https://api.deepseek.com/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
-    body: JSON.stringify({
-      model: 'deepseek-chat',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 2000,
-      temperature: 0.8
-    })
-  });
-  const data = await resp.json();
-  if (data.error) throw new Error(data.error.message);
+  const endpoint = `${BASE_URL}/chat/completions`;
+  console.log(`[API] 请求地址: ${endpoint}`);
+  let resp;
+  try {
+    resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+      body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: prompt }], max_tokens: 2000, temperature: 0.8 })
+    });
+  } catch(networkErr) {
+    const msg = `🌐 网络连接失败：无法访问 ${endpoint}\n可能原因：Base URL 被墙、地址错误或无网络\n详情：${networkErr.message}`;
+    console.error('[API ERROR]', msg);
+    throw new Error(msg);
+  }
+  const rawText = await resp.text();
+  console.log(`[API] 状态码: ${resp.status}`, rawText.slice(0,300));
+  if (!resp.ok) {
+    let msg = '';
+    if (resp.status===401) msg='❌ 401 Key错误：API Key 不正确或已失效';
+    else if (resp.status===402) msg='💳 402 余额不足：账户额度已用完，请充值';
+    else if (resp.status===429) msg='⏳ 429 请求太快：请稍等几秒再试';
+    else if (resp.status===404) msg=`🔍 404 地址错误：请检查 Base URL 是否正确（当前：${BASE_URL}）`;
+    else if (resp.status===500) msg='🔥 500 服务器错误：API 服务暂时不可用';
+    else msg=`❓ 错误 ${resp.status}：${rawText.slice(0,200)}`;
+    console.error('[API ERROR]', msg);
+    throw new Error(msg);
+  }
+  let data;
+  try { data = JSON.parse(rawText); }
+  catch(e) { throw new Error(`⚠️ 响应解析失败：${rawText.slice(0,200)}`); }
+  if (data.error) throw new Error(`API错误：${data.error.message||JSON.stringify(data.error)}`);
   return data.choices[0].message.content;
 }
 
 function parseJSON(raw) {
-  const clean = raw.replace(/```json|```/g, '').trim();
+  const clean = raw.replace(/```json|```/g,'').trim();
   const match = clean.match(/\{[\s\S]*\}/);
   return JSON.parse(match ? match[0] : clean);
 }
 
-// ── NAV ──
 function switchTool(id) {
-  document.querySelectorAll('.tool-page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tool-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.mobile-nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const idx = {t1:0,t2:1,t3:2}[id];
+  const idx={t1:0,t2:1,t3:2}[id];
   document.querySelectorAll('.nav-item')[idx]?.classList.add('active');
   document.querySelectorAll('.mobile-nav-btn')[idx]?.classList.add('active');
 }
 
-// ── TOOL 1 ──
-document.querySelectorAll('#t1StyleTags .style-tag').forEach(t => {
-  t.addEventListener('click', () => t.classList.toggle('active'));
+document.querySelectorAll('#t1StyleTags .style-tag').forEach(t=>{
+  t.addEventListener('click',()=>t.classList.toggle('active'));
 });
-
-let t1LastTopics = [];
 
 async function genTopics() {
   const cat = document.getElementById('t1Category').value.trim();
-  if (!cat) { showErr('t1Error', '请先输入内容品类'); return; }
-  const styles = [...document.querySelectorAll('#t1StyleTags .style-tag.active')].map(t => t.dataset.val).join('、') || '综合';
-
+  if (!cat) { showErr('t1Error','请先输入内容品类'); return; }
+  const styles = [...document.querySelectorAll('#t1StyleTags .style-tag.active')].map(t=>t.dataset.val).join('、')||'综合';
   hideErr('t1Error');
-  setLoading('t1', true);
-  document.getElementById('t1Btn').disabled = true;
-
+  setLoading('t1',true);
+  document.getElementById('t1Btn').disabled=true;
   try {
-    const raw = await callAI(`你是资深小红书内容策略师。为品类「${cat}」（风格：${styles}）生成10个爆款选题。
-每个包含：标题（带emoji，25字内）、钩子（20字内）、3个话题标签。
-只返回JSON：{"topics":[{"title":"","hook":"","tags":["",""]}]}`);
-    const parsed = parseJSON(raw);
-    t1LastTopics = parsed.topics || [];
+    const raw = await callAI(`你是资深小红书内容策略师。为品类「${cat}」（风格：${styles}）生成10个爆款选题。每个包含：标题（带emoji，25字内）、钩子（20字内）、3个话题标签。只返回JSON：{"topics":[{"title":"","hook":"","tags":["",""]}]}`);
+    t1LastTopics = parseJSON(raw).topics||[];
     renderTopics();
-  } catch(e) {
-    showErr('t1Error', '生成失败，请检查 API Key 或网络后重试');
-  } finally {
-    setLoading('t1', false);
-    document.getElementById('t1Btn').disabled = false;
-  }
+  } catch(e) { showErr('t1Error',e.message); }
+  finally { setLoading('t1',false); document.getElementById('t1Btn').disabled=false; }
 }
 
 function renderTopics() {
-  const grid = document.getElementById('t1Grid');
-  grid.innerHTML = t1LastTopics.map((t,i) => `
+  document.getElementById('t1Grid').innerHTML = t1LastTopics.map((t,i)=>`
     <div class="topic-card" style="animation-delay:${i*0.04}s" onclick="copyTopic(${i})">
       <div class="topic-num">NO.${String(i+1).padStart(2,'0')} · 点击复制</div>
       <div class="topic-title">${t.title}</div>
       <div class="topic-hook">💡 ${t.hook}</div>
       <div class="topic-tags">${(t.tags||[]).map(tag=>`<span class="t-tag">#${tag}</span>`).join('')}</div>
-    </div>
-  `).join('');
+    </div>`).join('');
   document.getElementById('t1Results').classList.add('show');
 }
 
 function copyTopic(i) {
-  const t = t1LastTopics[i];
+  const t=t1LastTopics[i];
   navigator.clipboard.writeText(`${t.title}\n${t.hook}\n${(t.tags||[]).map(x=>'#'+x).join(' ')}`);
 }
 
 function copyAllTopics() {
-  const text = t1LastTopics.map((t,i)=>`${i+1}. ${t.title}\n   ${t.hook}\n   ${(t.tags||[]).map(x=>'#'+x).join(' ')}`).join('\n\n');
+  const text=t1LastTopics.map((t,i)=>`${i+1}. ${t.title}\n   ${t.hook}\n   ${(t.tags||[]).map(x=>'#'+x).join(' ')}`).join('\n\n');
   navigator.clipboard.writeText(text);
-  const btn = document.querySelector('.copy-all-btn');
-  btn.textContent = '✓ 已复制！';
+  const btn=document.querySelector('.copy-all-btn');
+  btn.textContent='✓ 已复制！';
   setTimeout(()=>btn.textContent='📋 一键复制全部选题',2000);
 }
 
-// ── TOOL 2 ──
 function switchT2Tab(tab) {
   document.querySelectorAll('.t2-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tabs-bar .tab-btn').forEach((b,i)=>b.classList.toggle('active',(tab==='input'&&i===0)||(tab==='report'&&i===1)));
@@ -876,200 +443,134 @@ function switchT2Tab(tab) {
 
 function addT2Entry() {
   t2EntryCount++;
-  const id = t2EntryCount;
-  const div = document.createElement('div');
-  div.className = 'entry-row';
-  div.id = `e${id}`;
-  div.innerHTML = `
-    <input type="text" placeholder="内容标题" class="e-title">
-    <input type="number" placeholder="播放量" class="e-view">
-    <input type="number" placeholder="点赞" class="e-like">
-    <input type="number" placeholder="涨粉" class="e-fan">
-    <button class="del-btn" onclick="document.getElementById('e${id}').remove()">×</button>
-  `;
+  const id=t2EntryCount;
+  const div=document.createElement('div');
+  div.className='entry-row'; div.id=`e${id}`;
+  div.innerHTML=`<input type="text" placeholder="内容标题" class="e-title"><input type="number" placeholder="播放量" class="e-view"><input type="number" placeholder="点赞" class="e-like"><input type="number" placeholder="涨粉" class="e-fan"><button class="del-btn" onclick="document.getElementById('e${id}').remove()">×</button>`;
   document.getElementById('t2Entries').appendChild(div);
 }
 
 async function analyzeWeekly() {
-  const entries = [];
-  document.querySelectorAll('.entry-row').forEach(r => {
-    const title = r.querySelector('.e-title').value;
-    const view = parseInt(r.querySelector('.e-view').value)||0;
-    const like = parseInt(r.querySelector('.e-like').value)||0;
-    const fan = parseInt(r.querySelector('.e-fan').value)||0;
+  const entries=[];
+  document.querySelectorAll('.entry-row').forEach(r=>{
+    const title=r.querySelector('.e-title').value;
+    const view=parseInt(r.querySelector('.e-view').value)||0;
+    const like=parseInt(r.querySelector('.e-like').value)||0;
+    const fan=parseInt(r.querySelector('.e-fan').value)||0;
     if(title) entries.push({title,view,like,fan});
   });
-  if(!entries.length){ showErr('t2Error','请至少录入一条内容'); return; }
-
-  const fNow = parseInt(document.getElementById('t2FanNow').value)||0;
-  const fLast = parseInt(document.getElementById('t2FanLast').value)||0;
-  const platform = document.getElementById('t2Platform').value;
-  const account = document.getElementById('t2Account').value||'我的账号';
-  const goal = document.getElementById('t2Goal').value||'无';
-
-  const totalViews = entries.reduce((s,e)=>s+e.view,0);
-  const totalLikes = entries.reduce((s,e)=>s+e.like,0);
-  const fanGrowth = fNow-fLast;
-  const engRate = totalViews?((totalLikes/totalViews)*100).toFixed(2):0;
-  const best = [...entries].sort((a,b)=>b.view-a.view)[0];
-
+  if(!entries.length){showErr('t2Error','请至少录入一条内容');return;}
+  const fNow=parseInt(document.getElementById('t2FanNow').value)||0;
+  const fLast=parseInt(document.getElementById('t2FanLast').value)||0;
+  const platform=document.getElementById('t2Platform').value;
+  const goal=document.getElementById('t2Goal').value||'无';
+  const totalViews=entries.reduce((s,e)=>s+e.view,0);
+  const totalLikes=entries.reduce((s,e)=>s+e.like,0);
+  const fanGrowth=fNow-fLast;
+  const engRate=totalViews?((totalLikes/totalViews)*100).toFixed(2):0;
+  const best=[...entries].sort((a,b)=>b.view-a.view)[0];
   hideErr('t2Error');
   switchT2Tab('report');
   document.getElementById('t2Loading').classList.add('show');
-  document.getElementById('t2ReportContent').innerHTML = '';
-  document.getElementById('t2Btn').disabled = true;
-
-  // Render stats & bars immediately
-  const fanPct = fLast?((fanGrowth/fLast)*100).toFixed(1):0;
-  const stats = [
+  document.getElementById('t2ReportContent').innerHTML='';
+  document.getElementById('t2Btn').disabled=true;
+  const fanPct=fLast?((fanGrowth/fLast)*100).toFixed(1):0;
+  const stats=[
     {label:'总播放',val:fmtN(totalViews),sub:'',cls:'c-muted'},
     {label:'总点赞',val:fmtN(totalLikes),sub:'',cls:'c-muted'},
     {label:'净涨粉',val:(fanGrowth>=0?'+':'')+fmtN(fanGrowth),sub:`${fanPct}% 环比`,cls:fanGrowth>=0?'c-green':'c-red'},
     {label:'互动率',val:`${engRate}%`,sub:engRate>3?'表现良好':'待提升',cls:engRate>3?'c-green':'c-muted'},
   ];
-  const colors = ['#e8512a','#4f9cf9','#3ecf8e','#f4a261','#bc8cff','#f85149'];
-  const sorted = [...entries].sort((a,b)=>b.view-a.view);
-  const maxV = sorted[0]?.view||1;
-
-  const html = `
+  const colors=['#e8512a','#4f9cf9','#3ecf8e','#f4a261','#bc8cff','#f85149'];
+  const sorted=[...entries].sort((a,b)=>b.view-a.view);
+  const maxV=sorted[0]?.view||1;
+  const html=`
     <div class="stats-grid">${stats.map((s,i)=>`<div class="stat-card" style="animation-delay:${i*0.08}s"><div class="stat-label">${s.label}</div><div class="stat-val ${s.cls}">${s.val}</div><div class="stat-sub ${s.cls}">${s.sub}</div></div>`).join('')}</div>
-    <div class="chart-card">
-      <div class="chart-title">📈 内容表现排行</div>
-      ${sorted.map((e,i)=>`<div class="bar-row"><div class="bar-name">${e.title}</div><div class="bar-track"><div class="bar-fill" style="width:${(e.view/maxV*100).toFixed(1)}%;background:${colors[i%colors.length]}"></div></div><div class="bar-val">${fmtN(e.view)}</div></div>`).join('')}
-    </div>
-    <div class="insights-card">
-      <div class="insights-title">✦ AI 智能洞察</div>
-      <div id="t2Insights"><div class="insight-item"><div class="insight-dot"></div><div>正在分析中...</div></div></div>
-    </div>
-    <button class="export-btn" onclick="exportWeekly()">📋 导出报告文本</button>
-  `;
+    <div class="chart-card"><div class="chart-title">📈 内容表现排行</div>${sorted.map((e,i)=>`<div class="bar-row"><div class="bar-name">${e.title}</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:${colors[i%colors.length]}"></div></div><div class="bar-val">${fmtN(e.view)}</div></div>`).join('')}</div>
+    <div class="insights-card"><div class="insights-title">✦ AI 智能洞察</div><div id="t2Insights"><div class="insight-item"><div class="insight-dot"></div><div>正在分析中...</div></div></div></div>
+    <button class="export-btn" onclick="exportWeekly()">📋 导出报告文本</button>`;
   document.getElementById('t2Loading').classList.remove('show');
-  document.getElementById('t2ReportContent').innerHTML = html;
-
-  // Animate bars
+  document.getElementById('t2ReportContent').innerHTML=html;
   setTimeout(()=>{
     sorted.forEach((e,i)=>{
-      const fills = document.querySelectorAll('.bar-fill');
-      if(fills[i]) fills[i].style.width = `${(e.view/maxV*100).toFixed(1)}%`;
+      const fills=document.querySelectorAll('.bar-fill');
+      if(fills[i]) fills[i].style.width=`${(e.view/maxV*100).toFixed(1)}%`;
     });
   },100);
-
-  // AI insights
   try {
-    const raw = await callAI(`你是社交媒体数据分析师。分析以下${platform}运营数据，给3-4条专业运营洞察和下周建议。
-数据：总播放${totalViews}，总点赞${totalLikes}，互动率${engRate}%，净涨粉${fanGrowth}，最佳内容：${best?.title}（${best?.view}播放）
-各内容：${entries.map(e=>`${e.title}:播放${e.view}/点赞${e.like}/涨粉${e.fan}`).join('；')}
-只返回JSON：{"insights":["洞察1","洞察2","洞察3"]}`);
-    const parsed = parseJSON(raw);
-    document.getElementById('t2Insights').innerHTML = (parsed.insights||[]).map((ins,i)=>`
-      <div class="insight-item" style="animation-delay:${i*0.12}s"><div class="insight-dot"></div><div>${ins}</div></div>
-    `).join('');
+    const raw=await callAI(`分析${platform}运营数据，给3-4条专业洞察和下周建议。总播放${totalViews}，互动率${engRate}%，净涨粉${fanGrowth}，最佳内容：${best?.title}。各内容：${entries.map(e=>`${e.title}:播放${e.view}/点赞${e.like}/涨粉${e.fan}`).join('；')}。只返回JSON：{"insights":["洞察1","洞察2","洞察3"]}`);
+    const parsed=parseJSON(raw);
+    document.getElementById('t2Insights').innerHTML=(parsed.insights||[]).map((ins,i)=>`<div class="insight-item" style="animation-delay:${i*0.12}s"><div class="insight-dot"></div><div>${ins}</div></div>`).join('');
   } catch(e) {
-    document.getElementById('t2Insights').innerHTML = '<div class="insight-item"><div class="insight-dot"></div><div>AI 分析暂时不可用，数据统计已完成。</div></div>';
+    document.getElementById('t2Insights').innerHTML='<div class="insight-item"><div class="insight-dot"></div><div>AI 分析暂时不可用，数据统计已完成。</div></div>';
   }
-
-  document.getElementById('t2Btn').disabled = false;
+  document.getElementById('t2Btn').disabled=false;
 }
 
 function exportWeekly() {
-  const insights = [...document.querySelectorAll('#t2Insights .insight-item')].map(el=>el.querySelector('div:last-child').textContent).join('\n· ');
+  const insights=[...document.querySelectorAll('#t2Insights .insight-item')].map(el=>el.querySelector('div:last-child').textContent).join('\n· ');
   navigator.clipboard.writeText(`本周运营数据报告\n\nAI 洞察：\n· ${insights}`);
-  const btn = document.querySelector('.export-btn');
+  const btn=document.querySelector('.export-btn');
   btn.textContent='✓ 已复制';
   setTimeout(()=>btn.textContent='📋 导出报告文本',2000);
 }
 
-// ── TOOL 3 ──
-function toggleCheck(el) { el.classList.toggle('checked'); }
+function toggleCheck(el){el.classList.toggle('checked');}
 
 async function analyzeBrand() {
-  const brand = document.getElementById('t3Brand').value.trim();
-  if(!brand){ showErr('t3Error','请输入品牌名称'); return; }
-  const cat = document.getElementById('t3Category').value;
-  const platforms = [...document.querySelectorAll('#t3Platforms .check-item.checked')].map(el=>el.textContent.trim()).join('、');
-
+  const brand=document.getElementById('t3Brand').value.trim();
+  if(!brand){showErr('t3Error','请输入品牌名称');return;}
+  const cat=document.getElementById('t3Category').value;
+  const platforms=[...document.querySelectorAll('#t3Platforms .check-item.checked')].map(el=>el.textContent.trim()).join('、');
   hideErr('t3Error');
-  setLoading('t3', true);
-  document.getElementById('t3Btn').disabled = true;
+  setLoading('t3',true);
+  document.getElementById('t3Btn').disabled=true;
   document.getElementById('t3Result').classList.remove('show');
-
   try {
-    const raw = await callAI(`你是品牌内容营销分析师。分析品牌「${brand}」（品类：${cat}，平台：${platforms}）的内容营销策略。
-只返回JSON：
-{"score":75,"contentStrategy":["特征1","特征2","特征3","特征4"],"kolStyle":["偏好1","偏好2","偏好3"],"userProfile":"2-3句用户画像","kpi":[{"key":"月发布量","val":"80-120篇"},{"key":"主力KOL","val":"腰部为主"},{"key":"互动率","val":"3-5%"},{"key":"主要形式","val":"图文+短视频"}],"platformPattern":["规律1","规律2","规律3"],"opportunities":["建议1","建议2","建议3","建议4"]}`);
-    t3Data = {...parseJSON(raw), brand, cat};
+    const raw=await callAI(`分析品牌「${brand}」（品类：${cat}，平台：${platforms}）的内容营销策略。只返回JSON：{"score":75,"contentStrategy":["特征1","特征2","特征3"],"kolStyle":["偏好1","偏好2","偏好3"],"userProfile":"用户画像描述","kpi":[{"key":"月发布量","val":"80-120篇"},{"key":"主力KOL","val":"腰部为主"},{"key":"互动率","val":"3-5%"},{"key":"主要形式","val":"图文+短视频"}],"platformPattern":["规律1","规律2","规律3"],"opportunities":["建议1","建议2","建议3","建议4"]}`);
+    t3Data={...parseJSON(raw),brand,cat};
     renderBrand();
-  } catch(e) {
-    showErr('t3Error','分析失败，请检查 API Key 或网络后重试');
-  } finally {
-    setLoading('t3', false);
-    document.getElementById('t3Btn').disabled = false;
-  }
+  } catch(e){showErr('t3Error',e.message);}
+  finally{setLoading('t3',false);document.getElementById('t3Btn').disabled=false;}
 }
 
 function renderBrand() {
-  const d = t3Data;
-  const colors = ['#e8512a','#4f9cf9','#3ecf8e','#f4a261','#bc8cff'];
-  document.getElementById('t3Result').innerHTML = `
+  const d=t3Data;
+  document.getElementById('t3Result').innerHTML=`
     <div class="brand-banner">
-      <div>
-        <div class="brand-name-big">${d.brand}</div>
-        <span class="brand-cat-tag">${d.cat}</span>
-      </div>
-      <div class="score-box">
-        <div class="score-num">${d.score}</div>
-        <div class="score-lbl">内容竞争力</div>
-      </div>
+      <div><div class="brand-name-big">${d.brand}</div><span class="brand-cat-tag">${d.cat}</span></div>
+      <div class="score-box"><div class="score-num">${d.score}</div><div class="score-lbl">内容竞争力</div></div>
     </div>
     <div class="modules-grid">
-      <div class="mod-card" style="animation-delay:0.1s">
-        <div class="mod-title">📐 内容策略特征</div>
-        <ul class="mod-list">${(d.contentStrategy||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
-      </div>
-      <div class="mod-card" style="animation-delay:0.15s">
-        <div class="mod-title">🎯 KOL 投放偏好</div>
-        <ul class="mod-list">${(d.kolStyle||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
-      </div>
-      <div class="mod-card" style="animation-delay:0.2s">
-        <div class="mod-title">👥 用户画像</div>
-        <div class="mod-text">${d.userProfile||''}</div>
-      </div>
-      <div class="mod-card" style="animation-delay:0.25s">
-        <div class="mod-title">📊 关键数据参考</div>
-        ${(d.kpi||[]).map(k=>`<div class="kpi-row"><span class="kpi-k">${k.key}</span><span class="kpi-v">${k.val}</span></div>`).join('')}
-      </div>
-      <div class="mod-card mod-full" style="animation-delay:0.3s">
-        <div class="mod-title">⚡ 平台内容规律</div>
-        <ul class="mod-list">${(d.platformPattern||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
-      </div>
+      <div class="mod-card"><div class="mod-title">📐 内容策略特征</div><ul class="mod-list">${(d.contentStrategy||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="mod-card"><div class="mod-title">🎯 KOL 投放偏好</div><ul class="mod-list">${(d.kolStyle||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="mod-card"><div class="mod-title">👥 用户画像</div><div class="mod-text">${d.userProfile||''}</div></div>
+      <div class="mod-card"><div class="mod-title">📊 关键数据参考</div>${(d.kpi||[]).map(k=>`<div class="kpi-row"><span class="kpi-k">${k.key}</span><span class="kpi-v">${k.val}</span></div>`).join('')}</div>
+      <div class="mod-card mod-full"><div class="mod-title">⚡ 平台内容规律</div><ul class="mod-list">${(d.platformPattern||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
     </div>
     <div class="action-card">
       <div class="action-title">💡 竞争机会与投放建议</div>
-      <div>${(d.opportunities||[]).map((o,i)=>`<div class="action-item" style="animation-delay:${i*0.08}s"><div class="action-num">${i+1}</div><div>${o}</div></div>`).join('')}</div>
+      ${(d.opportunities||[]).map((o,i)=>`<div class="action-item" style="animation-delay:${i*0.08}s"><div class="action-num">${i+1}</div><div>${o}</div></div>`).join('')}
     </div>
-    <button class="export-btn" onclick="exportBrand()">📋 复制完整分析报告</button>
-  `;
+    <button class="export-btn" onclick="exportBrand()">📋 复制完整分析报告</button>`;
   document.getElementById('t3Result').classList.add('show');
 }
 
 function exportBrand() {
-  const d = t3Data;
-  if(!d) return;
-  const text = `品牌分析：${d.brand}（${d.cat}）\n竞争力评分：${d.score}/100\n\n内容策略\n${(d.contentStrategy||[]).map(s=>'· '+s).join('\n')}\n\nKOL偏好\n${(d.kolStyle||[]).map(s=>'· '+s).join('\n')}\n\n用户画像\n${d.userProfile}\n\n投放建议\n${(d.opportunities||[]).map((o,i)=>`${i+1}. ${o}`).join('\n')}`;
+  const d=t3Data; if(!d) return;
+  const text=`品牌分析：${d.brand}（${d.cat}）\n竞争力：${d.score}/100\n\n内容策略\n${(d.contentStrategy||[]).map(s=>'· '+s).join('\n')}\n\nKOL偏好\n${(d.kolStyle||[]).map(s=>'· '+s).join('\n')}\n\n用户画像\n${d.userProfile}\n\n投放建议\n${(d.opportunities||[]).map((o,i)=>`${i+1}. ${o}`).join('\n')}`;
   navigator.clipboard.writeText(text);
-  const btn = document.querySelectorAll('.export-btn')[1]||document.querySelector('.export-btn');
-  btn.textContent='✓ 已复制';
-  setTimeout(()=>btn.textContent='📋 复制完整分析报告',2000);
+  document.querySelector('#t3Result .export-btn').textContent='✓ 已复制';
+  setTimeout(()=>document.querySelector('#t3Result .export-btn').textContent='📋 复制完整分析报告',2000);
 }
 
-// ── UTILS ──
-function setLoading(tool, show) {
-  document.getElementById(`${tool}Loading`).classList.toggle('show', show);
-  if(tool==='t1') document.getElementById('t1Results').classList.toggle('show', false);
+function setLoading(tool,show){
+  document.getElementById(`${tool}Loading`).classList.toggle('show',show);
+  if(tool==='t1') document.getElementById('t1Results').classList.toggle('show',false);
 }
-function showErr(id, msg) { const el=document.getElementById(id); el.textContent=msg; el.classList.add('show'); }
-function hideErr(id) { document.getElementById(id).classList.remove('show'); }
-function fmtN(n) { return n>=10000?(n/10000).toFixed(1)+'w':n.toLocaleString(); }
+function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.classList.add('show');}
+function hideErr(id){document.getElementById(id).classList.remove('show');}
+function fmtN(n){return n>=10000?(n/10000).toFixed(1)+'w':n.toLocaleString();}
 </script>
 </body>
 </html>
