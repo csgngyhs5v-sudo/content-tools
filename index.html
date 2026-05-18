@@ -8,18 +8,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg: #0e0e0f;
-  --surface: #18181a;
-  --border: #2a2a2e;
-  --accent: #e8512a;
-  --accent2: #f4a261;
-  --blue: #4f9cf9;
-  --green: #3ecf8e;
-  --text: #f0ede8;
-  --muted: #888;
-  --card: #1c1c1f;
+  --bg: #0e0e0f; --surface: #18181a; --border: #2a2a2e;
+  --accent: #e8512a; --accent2: #f4a261; --blue: #4f9cf9;
+  --green: #3ecf8e; --text: #f0ede8; --muted: #888; --card: #1c1c1f;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', sans-serif; min-height: 100vh; }
 
@@ -33,14 +25,19 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .setup-input::placeholder { color: rgba(255,255,255,0.2); font-size: 12px; }
 .setup-tip { font-size: 12px; color: var(--muted); margin-bottom: 28px; line-height: 1.8; padding: 12px 14px; background: rgba(244,162,97,0.06); border-left: 2px solid var(--accent2); border-radius: 0 8px 8px 0; }
 .setup-tip a { color: var(--accent2); text-decoration: none; }
-.setup-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent), #c03a1a); border: none; border-radius: 12px; color: white; font-size: 15px; font-weight: 700; font-family: 'Noto Sans SC', sans-serif; letter-spacing: 2px; cursor: pointer; transition: opacity 0.2s; }
-.setup-btn:hover { opacity: 0.9; }
+.setup-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent), #c03a1a); border: none; border-radius: 12px; color: white; font-size: 15px; font-weight: 700; font-family: 'Noto Sans SC', sans-serif; letter-spacing: 2px; cursor: pointer; }
 .setup-tools { display: flex; gap: 8px; margin-top: 28px; flex-wrap: wrap; }
 .tool-badge { padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border); font-size: 11px; color: var(--muted); }
 
 #mainApp { display: none; min-height: 100vh; }
 .app-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
-@media(max-width: 700px) { .app-layout { grid-template-columns: 1fr; } .sidebar { display: none; } .mobile-nav { display: flex !important; } }
+@media(max-width: 700px) {
+  .app-layout { grid-template-columns: 1fr; display: block; }
+  .sidebar { display: none !important; }
+  .mobile-nav { display: flex !important; }
+  .content-area { padding: 16px !important; }
+  .tool-page.active { display: block !important; }
+}
 .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 28px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
 .sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
 .sidebar-name { font-family: 'Noto Serif SC', serif; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
@@ -59,7 +56,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .mobile-nav-btn { padding: 8px 14px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 12px; font-family: 'Noto Sans SC', sans-serif; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
 .mobile-nav-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
 .content-area { overflow-y: auto; padding: 36px 32px; }
-@media(max-width: 700px) { .content-area { padding: 20px 16px; } }
 .tool-page { display: none; animation: fadeIn 0.3s ease; }
 .tool-page.active { display: block; }
 .page-header { margin-bottom: 28px; }
@@ -95,7 +91,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .topic-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
 .t-tag { font-size: 11px; padding: 2px 8px; border-radius: 100px; background: rgba(232,81,42,0.1); color: var(--accent); border: 1px solid rgba(232,81,42,0.2); }
 .copy-all-btn { width: 100%; padding: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; letter-spacing: 2px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; margin-top: 4px; transition: all 0.2s; }
-.copy-all-btn:hover { color: var(--text); background: rgba(255,255,255,0.07); }
 .tabs-bar { display: flex; gap: 4px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 4px; margin-bottom: 20px; }
 .tab-btn { flex: 1; padding: 9px; border-radius: 7px; border: none; background: transparent; color: var(--muted); font-family: 'Noto Sans SC', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; }
 .tab-btn.active { background: var(--accent); color: white; font-weight: 500; }
@@ -110,13 +105,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .field-box textarea { resize: none; height: 50px; line-height: 1.6; }
 .field-box select option { background: var(--surface); }
 .field-full { grid-column: 1 / -1; }
-.entry-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 28px; gap: 8px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; animation: slideIn 0.3s ease; }
+.entry-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 28px; gap: 8px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
 @media(max-width: 500px) { .entry-row { grid-template-columns: 1fr 1fr; } }
 .entry-row input { background: transparent; border: none; border-bottom: 1px solid var(--border); outline: none; color: var(--text); font-family: 'Noto Sans SC', sans-serif; font-size: 12px; padding-bottom: 3px; width: 100%; }
 .entry-row input::placeholder { color: var(--muted); font-size: 11px; }
 .del-btn { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.2); color: #f85149; border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; }
 .add-entry-btn { width: 100%; padding: 11px; background: transparent; border: 1px dashed var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; margin-bottom: 16px; transition: all 0.2s; }
-.add-entry-btn:hover { border-color: var(--accent); color: var(--accent); }
 .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 16px; }
 @media(max-width: 500px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
 .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; animation: fadeIn 0.4s ease both; }
@@ -133,7 +127,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .bar-val { color: var(--muted); text-align: right; font-family: 'DM Mono', monospace; font-size: 11px; }
 .insights-card { background: rgba(79,156,249,0.05); border: 1px solid rgba(79,156,249,0.15); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
 .insights-title { font-size: 11px; letter-spacing: 2px; color: var(--blue); margin-bottom: 14px; }
-.insight-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: rgba(240,237,232,0.8); line-height: 1.8; animation: fadeIn 0.5s ease both; }
+.insight-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: rgba(240,237,232,0.8); line-height: 1.8; }
 .insight-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 9px; }
 .brand-form { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
 .check-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
@@ -152,7 +146,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .score-lbl { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
 .modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
 @media(max-width: 600px) { .modules-grid { grid-template-columns: 1fr; } }
-.mod-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; animation: fadeIn 0.4s ease both; }
+.mod-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
 .mod-full { grid-column: 1 / -1; }
 .mod-title { font-size: 10px; letter-spacing: 3px; color: var(--accent); margin-bottom: 12px; }
 .mod-list { list-style: none; }
@@ -165,10 +159,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 .kpi-v { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); }
 .action-card { background: rgba(232,81,42,0.04); border: 1px solid rgba(232,81,42,0.12); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
 .action-title { font-size: 14px; font-weight: 500; margin-bottom: 14px; }
-.action-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--muted); line-height: 1.8; animation: slideIn 0.4s ease both; }
+.action-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--muted); line-height: 1.8; }
 .action-num { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: white; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
 .export-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-size: 12px; letter-spacing: 2px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; transition: all 0.2s; }
-.export-btn:hover { background: rgba(255,255,255,0.04); color: var(--text); }
 .error-msg { display: none; background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.2); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #f85149; margin-top: 12px; line-height: 1.8; }
 .error-msg.show { display: block; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -188,7 +181,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
     <span class="setup-label">✦ BASE URL（接口地址）</span>
     <input class="setup-input" id="baseUrlInput" type="text" value="https://api.deepseek.com/v1" placeholder="https://api.deepseek.com/v1">
     <div class="setup-tip">
-      🇨🇳 国内用户如连接失败，可尝试把 Base URL 改为你的代理地址，或使用 <a href="https://siliconflow.cn" target="_blank">硅基流动</a> 的兼容接口。<br>
+      🇨🇳 国内用户如连接失败，可把 Base URL 改为代理地址，或用 <a href="https://siliconflow.cn" target="_blank">硅基流动</a> 接口。<br>
       没有Key？去 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 免费注册。
     </div>
     <button class="setup-btn" onclick="startApp()">🚀 进入工具集</button>
@@ -225,6 +218,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
     </div>
 
     <div class="content-area">
+
       <div class="tool-page active" id="t1">
         <div class="page-header">
           <div class="page-tag">TOOL 01</div>
@@ -233,7 +227,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
         </div>
         <div class="input-card">
           <span class="field-label">✦ 内容品类</span>
-          <input class="text-input" id="t1Category" placeholder="例：护肤、减脂、职场穿搭、咖啡、旅行...">
+          <input class="text-input" id="t1Category" placeholder="例：护肤、减脂、职场穿搭...">
           <span class="field-label">✦ 内容风格（可多选）</span>
           <div class="tag-row" id="t1StyleTags">
             <button class="style-tag active" data-val="干货教程">干货教程</button>
@@ -269,7 +263,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
             <div class="field-box"><label>账号名称</label><input type="text" id="t2Account" placeholder="你的账号名"></div>
             <div class="field-box"><label>本周粉丝数</label><input type="number" id="t2FanNow" placeholder="如：12800"></div>
             <div class="field-box"><label>上周粉丝数</label><input type="number" id="t2FanLast" placeholder="如：11200"></div>
-            <div class="field-box field-full"><label>本周目标 / 备注</label><textarea id="t2Goal" placeholder="例：本周主推护肤系列，目标涨粉500..."></textarea></div>
+            <div class="field-box field-full"><label>本周目标</label><textarea id="t2Goal" placeholder="例：本周主推护肤系列，目标涨粉500..."></textarea></div>
           </div>
           <div style="font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:12px;">✦ 内容明细</div>
           <div id="t2Entries"></div>
@@ -291,9 +285,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
         </div>
         <div class="brand-form">
           <span class="field-label">✦ 目标品牌</span>
-          <input class="text-input" id="t3Brand" placeholder="例：完美日记、泡泡玛特、元气森林...">
+          <input class="text-input" id="t3Brand" placeholder="例：完美日记、泡泡玛特...">
           <span class="field-label">✦ 品类</span>
-          <select class="text-input" id="t3Category" style="margin-bottom:16px"><option>美妆护肤</option><option>食品饮料</option><option>服装配饰</option><option>数码科技</option><option>家居生活</option><option>运动户外</option><option>其他</option></select>
+          <select class="text-input" id="t3Category" style="margin-bottom:16px">
+            <option>美妆护肤</option><option>食品饮料</option><option>服装配饰</option>
+            <option>数码科技</option><option>家居生活</option><option>运动户外</option><option>其他</option>
+          </select>
           <span class="field-label">✦ 主要平台</span>
           <div class="check-group" id="t3Platforms">
             <div class="check-item checked" onclick="toggleCheck(this)"><div class="check-box"></div>小红书</div>
@@ -314,75 +311,68 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', s
 </div>
 
 <script>
-let API_KEY = '';
-let BASE_URL = 'https://api.deepseek.com/v1';
-let t2EntryCount = 0;
-let t1LastTopics = [];
-let t3Data = null;
+let API_KEY='', BASE_URL='https://api.deepseek.com/v1', t2EntryCount=0, t1LastTopics=[], t3Data=null;
 
-function startApp() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  const url = document.getElementById('baseUrlInput').value.trim();
-  if (!key.startsWith('sk-')) { alert('请输入正确的 API Key（以 sk- 开头）'); return; }
-  if (!url.startsWith('http')) { alert('Base URL 格式不正确'); return; }
-  API_KEY = key;
-  BASE_URL = url.replace(/\/$/, '');
-  document.getElementById('setupScreen').style.display = 'none';
-  document.getElementById('mainApp').style.display = 'block';
-  document.getElementById('baseUrlDisplay').textContent = BASE_URL;
-  addT2Entry(); addT2Entry(); addT2Entry();
+function startApp(){
+  const key=document.getElementById('apiKeyInput').value.trim();
+  const url=document.getElementById('baseUrlInput').value.trim();
+  if(!key.startsWith('sk-')){alert('请输入正确的 API Key（以 sk- 开头）');return;}
+  if(!url.startsWith('http')){alert('Base URL 格式不正确');return;}
+  API_KEY=key; BASE_URL=url.replace(/\/$/,'');
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('mainApp').style.display='block';
+  document.getElementById('baseUrlDisplay').textContent=BASE_URL;
+  addT2Entry();addT2Entry();addT2Entry();
 }
 
-function changeKey() {
-  API_KEY = ''; BASE_URL = 'https://api.deepseek.com/v1';
-  document.getElementById('mainApp').style.display = 'none';
-  document.getElementById('setupScreen').style.display = 'flex';
-  document.getElementById('apiKeyInput').value = '';
-  document.getElementById('baseUrlInput').value = 'https://api.deepseek.com/v1';
+function changeKey(){
+  API_KEY='';BASE_URL='https://api.deepseek.com/v1';
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('setupScreen').style.display='flex';
+  document.getElementById('apiKeyInput').value='';
+  document.getElementById('baseUrlInput').value='https://api.deepseek.com/v1';
 }
 
-async function callAI(prompt) {
-  const endpoint = `${BASE_URL}/chat/completions`;
+async function callAI(prompt){
+  const endpoint=`${BASE_URL}/chat/completions`;
   console.log(`[API] 请求地址: ${endpoint}`);
   let resp;
-  try {
-    resp = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
-      body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: prompt }], max_tokens: 2000, temperature: 0.8 })
+  try{
+    resp=await fetch(endpoint,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${API_KEY}`},
+      body:JSON.stringify({model:'deepseek-chat',messages:[{role:'user',content:prompt}],max_tokens:2000,temperature:0.8})
     });
-  } catch(networkErr) {
-    const msg = `🌐 网络连接失败：无法访问 ${endpoint}\n可能原因：Base URL 被墙、地址错误或无网络\n详情：${networkErr.message}`;
-    console.error('[API ERROR]', msg);
-    throw new Error(msg);
+  }catch(e){
+    const msg=`🌐 网络连接失败：无法访问 ${endpoint}\n详情：${e.message}`;
+    console.error(msg);throw new Error(msg);
   }
-  const rawText = await resp.text();
-  console.log(`[API] 状态码: ${resp.status}`, rawText.slice(0,300));
-  if (!resp.ok) {
-    let msg = '';
-    if (resp.status===401) msg='❌ 401 Key错误：API Key 不正确或已失效';
-    else if (resp.status===402) msg='💳 402 余额不足：账户额度已用完，请充值';
-    else if (resp.status===429) msg='⏳ 429 请求太快：请稍等几秒再试';
-    else if (resp.status===404) msg=`🔍 404 地址错误：请检查 Base URL 是否正确（当前：${BASE_URL}）`;
-    else if (resp.status===500) msg='🔥 500 服务器错误：API 服务暂时不可用';
-    else msg=`❓ 错误 ${resp.status}：${rawText.slice(0,200)}`;
-    console.error('[API ERROR]', msg);
-    throw new Error(msg);
+  const raw=await resp.text();
+  console.log(`[API] 状态码: ${resp.status}`,raw.slice(0,300));
+  if(!resp.ok){
+    let msg='';
+    if(resp.status===401)msg='❌ 401：API Key 不正确或已失效';
+    else if(resp.status===402)msg='💳 402：账户余额不足，请充值';
+    else if(resp.status===429)msg='⏳ 429：请求太频繁，稍等几秒再试';
+    else if(resp.status===404)msg=`🔍 404：接口地址错误，请检查 Base URL（当前：${BASE_URL}）`;
+    else if(resp.status===500)msg='🔥 500：服务器错误，请稍后再试';
+    else msg=`❓ 错误 ${resp.status}：${raw.slice(0,200)}`;
+    console.error(msg);throw new Error(msg);
   }
   let data;
-  try { data = JSON.parse(rawText); }
-  catch(e) { throw new Error(`⚠️ 响应解析失败：${rawText.slice(0,200)}`); }
-  if (data.error) throw new Error(`API错误：${data.error.message||JSON.stringify(data.error)}`);
+  try{data=JSON.parse(raw);}
+  catch(e){throw new Error(`⚠️ 响应解析失败：${raw.slice(0,200)}`);}
+  if(data.error)throw new Error(`API错误：${data.error.message||JSON.stringify(data.error)}`);
   return data.choices[0].message.content;
 }
 
-function parseJSON(raw) {
-  const clean = raw.replace(/```json|```/g,'').trim();
-  const match = clean.match(/\{[\s\S]*\}/);
-  return JSON.parse(match ? match[0] : clean);
+function parseJSON(raw){
+  const clean=raw.replace(/```json|```/g,'').trim();
+  const match=clean.match(/\{[\s\S]*\}/);
+  return JSON.parse(match?match[0]:clean);
 }
 
-function switchTool(id) {
+function switchTool(id){
   document.querySelectorAll('.tool-page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelectorAll('.mobile-nav-btn').forEach(b=>b.classList.remove('active'));
@@ -396,23 +386,22 @@ document.querySelectorAll('#t1StyleTags .style-tag').forEach(t=>{
   t.addEventListener('click',()=>t.classList.toggle('active'));
 });
 
-async function genTopics() {
-  const cat = document.getElementById('t1Category').value.trim();
-  if (!cat) { showErr('t1Error','请先输入内容品类'); return; }
-  const styles = [...document.querySelectorAll('#t1StyleTags .style-tag.active')].map(t=>t.dataset.val).join('、')||'综合';
-  hideErr('t1Error');
-  setLoading('t1',true);
+async function genTopics(){
+  const cat=document.getElementById('t1Category').value.trim();
+  if(!cat){showErr('t1Error','请先输入内容品类');return;}
+  const styles=[...document.querySelectorAll('#t1StyleTags .style-tag.active')].map(t=>t.dataset.val).join('、')||'综合';
+  hideErr('t1Error');setLoading('t1',true);
   document.getElementById('t1Btn').disabled=true;
-  try {
-    const raw = await callAI(`你是资深小红书内容策略师。为品类「${cat}」（风格：${styles}）生成10个爆款选题。每个包含：标题（带emoji，25字内）、钩子（20字内）、3个话题标签。只返回JSON：{"topics":[{"title":"","hook":"","tags":["",""]}]}`);
-    t1LastTopics = parseJSON(raw).topics||[];
+  try{
+    const raw=await callAI(`你是资深小红书内容策略师。为品类「${cat}」（风格：${styles}）生成10个爆款选题。每个包含：标题（带emoji，25字内）、钩子（20字内）、3个话题标签。只返回JSON：{"topics":[{"title":"","hook":"","tags":["",""]}]}`);
+    t1LastTopics=parseJSON(raw).topics||[];
     renderTopics();
-  } catch(e) { showErr('t1Error',e.message); }
-  finally { setLoading('t1',false); document.getElementById('t1Btn').disabled=false; }
+  }catch(e){showErr('t1Error',e.message);}
+  finally{setLoading('t1',false);document.getElementById('t1Btn').disabled=false;}
 }
 
-function renderTopics() {
-  document.getElementById('t1Grid').innerHTML = t1LastTopics.map((t,i)=>`
+function renderTopics(){
+  document.getElementById('t1Grid').innerHTML=t1LastTopics.map((t,i)=>`
     <div class="topic-card" style="animation-delay:${i*0.04}s" onclick="copyTopic(${i})">
       <div class="topic-num">NO.${String(i+1).padStart(2,'0')} · 点击复制</div>
       <div class="topic-title">${t.title}</div>
@@ -422,12 +411,12 @@ function renderTopics() {
   document.getElementById('t1Results').classList.add('show');
 }
 
-function copyTopic(i) {
+function copyTopic(i){
   const t=t1LastTopics[i];
   navigator.clipboard.writeText(`${t.title}\n${t.hook}\n${(t.tags||[]).map(x=>'#'+x).join(' ')}`);
 }
 
-function copyAllTopics() {
+function copyAllTopics(){
   const text=t1LastTopics.map((t,i)=>`${i+1}. ${t.title}\n   ${t.hook}\n   ${(t.tags||[]).map(x=>'#'+x).join(' ')}`).join('\n\n');
   navigator.clipboard.writeText(text);
   const btn=document.querySelector('.copy-all-btn');
@@ -435,29 +424,28 @@ function copyAllTopics() {
   setTimeout(()=>btn.textContent='📋 一键复制全部选题',2000);
 }
 
-function switchT2Tab(tab) {
+function switchT2Tab(tab){
   document.querySelectorAll('.t2-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tabs-bar .tab-btn').forEach((b,i)=>b.classList.toggle('active',(tab==='input'&&i===0)||(tab==='report'&&i===1)));
   document.getElementById(tab==='input'?'t2Input':'t2Report').classList.add('active');
 }
 
-function addT2Entry() {
-  t2EntryCount++;
-  const id=t2EntryCount;
+function addT2Entry(){
+  t2EntryCount++;const id=t2EntryCount;
   const div=document.createElement('div');
-  div.className='entry-row'; div.id=`e${id}`;
+  div.className='entry-row';div.id=`e${id}`;
   div.innerHTML=`<input type="text" placeholder="内容标题" class="e-title"><input type="number" placeholder="播放量" class="e-view"><input type="number" placeholder="点赞" class="e-like"><input type="number" placeholder="涨粉" class="e-fan"><button class="del-btn" onclick="document.getElementById('e${id}').remove()">×</button>`;
   document.getElementById('t2Entries').appendChild(div);
 }
 
-async function analyzeWeekly() {
+async function analyzeWeekly(){
   const entries=[];
   document.querySelectorAll('.entry-row').forEach(r=>{
     const title=r.querySelector('.e-title').value;
     const view=parseInt(r.querySelector('.e-view').value)||0;
     const like=parseInt(r.querySelector('.e-like').value)||0;
     const fan=parseInt(r.querySelector('.e-fan').value)||0;
-    if(title) entries.push({title,view,like,fan});
+    if(title)entries.push({title,view,like,fan});
   });
   if(!entries.length){showErr('t2Error','请至少录入一条内容');return;}
   const fNow=parseInt(document.getElementById('t2FanNow').value)||0;
@@ -469,8 +457,7 @@ async function analyzeWeekly() {
   const fanGrowth=fNow-fLast;
   const engRate=totalViews?((totalLikes/totalViews)*100).toFixed(2):0;
   const best=[...entries].sort((a,b)=>b.view-a.view)[0];
-  hideErr('t2Error');
-  switchT2Tab('report');
+  hideErr('t2Error');switchT2Tab('report');
   document.getElementById('t2Loading').classList.add('show');
   document.getElementById('t2ReportContent').innerHTML='';
   document.getElementById('t2Btn').disabled=true;
@@ -494,20 +481,20 @@ async function analyzeWeekly() {
   setTimeout(()=>{
     sorted.forEach((e,i)=>{
       const fills=document.querySelectorAll('.bar-fill');
-      if(fills[i]) fills[i].style.width=`${(e.view/maxV*100).toFixed(1)}%`;
+      if(fills[i])fills[i].style.width=`${(e.view/maxV*100).toFixed(1)}%`;
     });
   },100);
-  try {
-    const raw=await callAI(`分析${platform}运营数据，给3-4条专业洞察和下周建议。总播放${totalViews}，互动率${engRate}%，净涨粉${fanGrowth}，最佳内容：${best?.title}。各内容：${entries.map(e=>`${e.title}:播放${e.view}/点赞${e.like}/涨粉${e.fan}`).join('；')}。只返回JSON：{"insights":["洞察1","洞察2","洞察3"]}`);
+  try{
+    const raw=await callAI(`分析${platform}运营数据，给3条专业洞察和下周建议。总播放${totalViews}，互动率${engRate}%，净涨粉${fanGrowth}，最佳：${best?.title}。各内容：${entries.map(e=>`${e.title}:播放${e.view}/点赞${e.like}/涨粉${e.fan}`).join('；')}。只返回JSON：{"insights":["洞察1","洞察2","洞察3"]}`);
     const parsed=parseJSON(raw);
     document.getElementById('t2Insights').innerHTML=(parsed.insights||[]).map((ins,i)=>`<div class="insight-item" style="animation-delay:${i*0.12}s"><div class="insight-dot"></div><div>${ins}</div></div>`).join('');
-  } catch(e) {
+  }catch(e){
     document.getElementById('t2Insights').innerHTML='<div class="insight-item"><div class="insight-dot"></div><div>AI 分析暂时不可用，数据统计已完成。</div></div>';
   }
   document.getElementById('t2Btn').disabled=false;
 }
 
-function exportWeekly() {
+function exportWeekly(){
   const insights=[...document.querySelectorAll('#t2Insights .insight-item')].map(el=>el.querySelector('div:last-child').textContent).join('\n· ');
   navigator.clipboard.writeText(`本周运营数据报告\n\nAI 洞察：\n· ${insights}`);
   const btn=document.querySelector('.export-btn');
@@ -517,24 +504,23 @@ function exportWeekly() {
 
 function toggleCheck(el){el.classList.toggle('checked');}
 
-async function analyzeBrand() {
+async function analyzeBrand(){
   const brand=document.getElementById('t3Brand').value.trim();
   if(!brand){showErr('t3Error','请输入品牌名称');return;}
   const cat=document.getElementById('t3Category').value;
   const platforms=[...document.querySelectorAll('#t3Platforms .check-item.checked')].map(el=>el.textContent.trim()).join('、');
-  hideErr('t3Error');
-  setLoading('t3',true);
+  hideErr('t3Error');setLoading('t3',true);
   document.getElementById('t3Btn').disabled=true;
   document.getElementById('t3Result').classList.remove('show');
-  try {
-    const raw=await callAI(`分析品牌「${brand}」（品类：${cat}，平台：${platforms}）的内容营销策略。只返回JSON：{"score":75,"contentStrategy":["特征1","特征2","特征3"],"kolStyle":["偏好1","偏好2","偏好3"],"userProfile":"用户画像描述","kpi":[{"key":"月发布量","val":"80-120篇"},{"key":"主力KOL","val":"腰部为主"},{"key":"互动率","val":"3-5%"},{"key":"主要形式","val":"图文+短视频"}],"platformPattern":["规律1","规律2","规律3"],"opportunities":["建议1","建议2","建议3","建议4"]}`);
+  try{
+    const raw=await callAI(`分析品牌「${brand}」（品类：${cat}，平台：${platforms}）内容营销策略。只返回JSON：{"score":75,"contentStrategy":["特征1","特征2","特征3"],"kolStyle":["偏好1","偏好2","偏好3"],"userProfile":"用户画像","kpi":[{"key":"月发布量","val":"80-120篇"},{"key":"主力KOL","val":"腰部为主"},{"key":"互动率","val":"3-5%"},{"key":"主要形式","val":"图文+短视频"}],"platformPattern":["规律1","规律2","规律3"],"opportunities":["建议1","建议2","建议3"]}`);
     t3Data={...parseJSON(raw),brand,cat};
     renderBrand();
-  } catch(e){showErr('t3Error',e.message);}
+  }catch(e){showErr('t3Error',e.message);}
   finally{setLoading('t3',false);document.getElementById('t3Btn').disabled=false;}
 }
 
-function renderBrand() {
+function renderBrand(){
   const d=t3Data;
   document.getElementById('t3Result').innerHTML=`
     <div class="brand-banner">
@@ -542,31 +528,31 @@ function renderBrand() {
       <div class="score-box"><div class="score-num">${d.score}</div><div class="score-lbl">内容竞争力</div></div>
     </div>
     <div class="modules-grid">
-      <div class="mod-card"><div class="mod-title">📐 内容策略特征</div><ul class="mod-list">${(d.contentStrategy||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
-      <div class="mod-card"><div class="mod-title">🎯 KOL 投放偏好</div><ul class="mod-list">${(d.kolStyle||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="mod-card"><div class="mod-title">📐 内容策略</div><ul class="mod-list">${(d.contentStrategy||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="mod-card"><div class="mod-title">🎯 KOL 偏好</div><ul class="mod-list">${(d.kolStyle||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
       <div class="mod-card"><div class="mod-title">👥 用户画像</div><div class="mod-text">${d.userProfile||''}</div></div>
-      <div class="mod-card"><div class="mod-title">📊 关键数据参考</div>${(d.kpi||[]).map(k=>`<div class="kpi-row"><span class="kpi-k">${k.key}</span><span class="kpi-v">${k.val}</span></div>`).join('')}</div>
-      <div class="mod-card mod-full"><div class="mod-title">⚡ 平台内容规律</div><ul class="mod-list">${(d.platformPattern||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="mod-card"><div class="mod-title">📊 关键数据</div>${(d.kpi||[]).map(k=>`<div class="kpi-row"><span class="kpi-k">${k.key}</span><span class="kpi-v">${k.val}</span></div>`).join('')}</div>
+      <div class="mod-card mod-full"><div class="mod-title">⚡ 平台规律</div><ul class="mod-list">${(d.platformPattern||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
     </div>
     <div class="action-card">
-      <div class="action-title">💡 竞争机会与投放建议</div>
-      ${(d.opportunities||[]).map((o,i)=>`<div class="action-item" style="animation-delay:${i*0.08}s"><div class="action-num">${i+1}</div><div>${o}</div></div>`).join('')}
+      <div class="action-title">💡 竞争机会与建议</div>
+      ${(d.opportunities||[]).map((o,i)=>`<div class="action-item"><div class="action-num">${i+1}</div><div>${o}</div></div>`).join('')}
     </div>
-    <button class="export-btn" onclick="exportBrand()">📋 复制完整分析报告</button>`;
+    <button class="export-btn" onclick="exportBrand()">📋 复制完整报告</button>`;
   document.getElementById('t3Result').classList.add('show');
 }
 
-function exportBrand() {
-  const d=t3Data; if(!d) return;
+function exportBrand(){
+  const d=t3Data;if(!d)return;
   const text=`品牌分析：${d.brand}（${d.cat}）\n竞争力：${d.score}/100\n\n内容策略\n${(d.contentStrategy||[]).map(s=>'· '+s).join('\n')}\n\nKOL偏好\n${(d.kolStyle||[]).map(s=>'· '+s).join('\n')}\n\n用户画像\n${d.userProfile}\n\n投放建议\n${(d.opportunities||[]).map((o,i)=>`${i+1}. ${o}`).join('\n')}`;
   navigator.clipboard.writeText(text);
   document.querySelector('#t3Result .export-btn').textContent='✓ 已复制';
-  setTimeout(()=>document.querySelector('#t3Result .export-btn').textContent='📋 复制完整分析报告',2000);
+  setTimeout(()=>document.querySelector('#t3Result .export-btn').textContent='📋 复制完整报告',2000);
 }
 
 function setLoading(tool,show){
   document.getElementById(`${tool}Loading`).classList.toggle('show',show);
-  if(tool==='t1') document.getElementById('t1Results').classList.toggle('show',false);
+  if(tool==='t1')document.getElementById('t1Results').classList.toggle('show',false);
 }
 function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.classList.add('show');}
 function hideErr(id){document.getElementById(id).classList.remove('show');}
